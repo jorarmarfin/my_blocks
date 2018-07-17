@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains my_blocks.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function my_blocks_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the my_blocks module.
+    case 'help.page.my_blocks':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Mis bloques personalizados') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function my_blocks_theme() {
+  return [
+    'my_blocks' => [
+      'render element' => 'children',
+    ],
+  ];
+}
