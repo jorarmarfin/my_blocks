@@ -29,7 +29,12 @@ function my_blocks_help($route_name, RouteMatchInterface $route_match) {
 function my_blocks_theme() {
   return [
     'my_blocks' => [
-      'render element' => 'children',
+      'variables' => [ 'data' => NULL,],
+      'template' => 'my-blocks',
+    ],
+    'my_blocks_blog' => [
+      'variables' => [ 'data' => NULL,],
+      'template' => 'block-blog',
     ],
   ];
 }
