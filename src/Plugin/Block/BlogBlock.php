@@ -23,10 +23,7 @@ class BlogBlock extends BlockBase {
     $build['#theme'] = 'my_blocks_blog';
     $build['#data'] = $data;
 
-<<<<<<< HEAD
-=======
     dump($data);
->>>>>>> 31456b388499b722dd4833fb2b1385182b0105f5
     return $build;
   }
   public function getData()
@@ -38,9 +35,6 @@ class BlogBlock extends BlockBase {
 
     $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
 
-<<<<<<< HEAD
-    return $nodes;
-=======
     $i = 0;
     $data = [];
     foreach ($nodes as $key => $node) {
@@ -51,7 +45,6 @@ class BlogBlock extends BlockBase {
 
 
     return $data;
->>>>>>> 31456b388499b722dd4833fb2b1385182b0105f5
   }
 
 
