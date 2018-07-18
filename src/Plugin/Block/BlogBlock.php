@@ -39,7 +39,7 @@ class BlogBlock extends BlockBase {
     $data = [];
     foreach ($nodes as $key => $node) {
       $data[$i]['title'] = $node->title->value;
-      $data[$i]['imagen'] = file_create_url($node->field_image->entity->getFileUri())
+      $data[$i]['imagen'] = file_create_url($node->field_image->entity->getFileUri());
       $i++;
     }
 
