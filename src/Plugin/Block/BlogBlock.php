@@ -23,18 +23,28 @@ class BlogBlock extends BlockBase {
     $build['#theme'] = 'my_blocks_blog';
     $build['#data'] = $data;
 
+    dump($data);
     return $build;
   }
   public function getData()
   {
     $entity = \Drupal::entityQuery('node');
-    $entity->condition('type', 'personal');
+    $entity->condition('type', 'predicadores');
     $entity->range(0,5);
     $nids = $entity->execute();
 
     $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
 
-    return $nodes;
+    $i = 0;
+    $data = [];
+    foreach ($nodes as $key => $node) {
+      $data[$i]['title'] = $node->title->value;
+      $data[$i]['imagen'] = file_create_url($node->field_image->entity->getFileUri())
+      $i++;
+    }
+
+
+    return $data;
   }
 
 
