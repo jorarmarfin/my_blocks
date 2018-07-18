@@ -1,2 +1,6 @@
 <!-- Add you custom twig html here -->
-<h1>blog 2</h1>
+<h1>blog 4</h1>
+{{ dump(data) }}
+{% for item in data %}
+<h2>{{item->title}}</h2>
+{% endfor %}
