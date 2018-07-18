@@ -19,27 +19,22 @@ class BlogBlock extends BlockBase {
    */
   public function build() {
     $build = [];
-    $data = [];
+    $data = $this->getData();
     $build['#theme'] = 'my_blocks_blog';
     $build['#data'] = $data;
 
-    $this->getData();
-
-    //return $build;
+    return $build;
   }
   public function getData()
   {
     $entity = \Drupal::entityQuery('node');
     $entity->condition('type', 'predicadores');
+    $entity->range(0,5);
     $nids = $entity->execute();
 
-    dump(count($nids));
-    dump('111');
-    /*
-    $entity->condition('field_aprobado_pero_no_iniciado', '0', '=');
-    $entity->sort('title', 'ASC');
-    $nids = $entity->execute();
-    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);*/
+    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+
+    return $nodes;
   }
 
 
