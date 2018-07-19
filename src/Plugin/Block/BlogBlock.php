@@ -19,18 +19,17 @@ class BlogBlock extends BlockBase {
    */
   public function build() {
     $build = [];
-    $data = $this->getData();
     $build['#theme'] = 'my_blocks_blog';
-    $build['#data'] = $data;
+    $build['#data'] = $this->getData();
 
-    dump($data);
+
     return $build;
   }
   public function getData()
   {
     $entity = \Drupal::entityQuery('node');
-    $entity->condition('type', 'predicadores');
-    $entity->range(0,5);
+    $entity->condition('type', 'article');
+    $entity->range(0,3);
     $nids = $entity->execute();
 
     $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
@@ -39,12 +38,14 @@ class BlogBlock extends BlockBase {
     $data = [];
     foreach ($nodes as $key => $node) {
       $data[$i]['title'] = $node->title->value;
-      $data[$i]['imagen'] = file_create_url($node->field_image->entity->getFileUri());
+      $data[$i]['summary'] = $node->body->summary;
+      $data[$i]['fecha'] = $node->created;
+      //$data[$i]['imagen'] = file_create_url($node->field_image->entity->getFileUri());
       $i++;
     }
+    //dump($data);
 
-
-    return $data;
+    return $nodes;
   }
 
 
